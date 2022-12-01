@@ -1,24 +1,31 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 {
-    int fullTime = 1, partTime = 2, Emp_Rate_Per_Hoyr = 20, empHrs=0, empwage = 0;
+int fulTime = 1;
+int partTime = 2;
+int Emp_Rate_Per_Hoyr = 20;    
+    {
+    int empHrs = 0, empwage = 0;
     Random randobj = new Random();
-    int checkPresent = randobj.Next(0, 3);
-    if(checkPresent==fullTime)
-    {
-        empHrs = 8;
-        Console.WriteLine("Employee is present");
-            empwage = empHrs * Emp_Rate_Per_Hoyr;
-    }
-        else if(checkPresent == partTime)
+    int checkPresent = randobj.Next(0, 2);
+        switch (checkPresent)
         {
-        empHrs = 4;
-        Console.WriteLine("Employee is Part time");
-             empwage = empHrs * Emp_Rate_Per_Hoyr;
+            case 1:
+                empHrs = 8;
+                Console.WriteLine("Employee is present");
+                break;
+            case 2:
+                empHrs = 4;
+                Console.WriteLine("Employee is Part time");
+                break;
+            default:
+                empHrs = 0;
+                Console.WriteLine("Employee is absent");
+                break;
         }
-    else
-    {
-        empHrs = 0;
-        Console.WriteLine("Employee is absent");
-    }
+    empwage = empHrs * Emp_Rate_Per_Hoyr;
     Console.WriteLine("employee wage:" + empwage);
+    }
 }
