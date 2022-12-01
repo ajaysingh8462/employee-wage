@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
@@ -7,10 +8,12 @@ int fulTime = 1;
 int partTime = 2;
 int Emp_Rate_Per_Hoyr = 20;
 int Max_Working_Day = 20;
+int maxWorkingHourInMonth = 100;
     {
-    int empHrs = 0, empwage = 0, totalErning = 0;
-    for(int day = 0; day < Max_Working_Day; day++)
+    int empHrs = 0, totalEmpHrs =0, empwage = 0, totalWorkingDays =0 ,totalErning = 0;
+    while(totalEmpHrs <= maxWorkingHourInMonth && totalWorkingDays < Max_Working_Day)
         {
+            totalWorkingDays++;
             Random randobj = new Random();
             int checkPresent = randobj.Next(0, 3);
             switch (checkPresent)
@@ -29,9 +32,11 @@ int Max_Working_Day = 20;
                     break;
             }
             empwage = empHrs * Emp_Rate_Per_Hoyr;
+            maxWorkingHourInMonth += totalEmpHrs;
             totalErning += empwage;
             Console.WriteLine("employee wage:" + empwage);
         }
+        Console.WriteLine("total working hour:" + maxWorkingHourInMonth);
         Console.WriteLine("total employee wage:" + totalErning);
     }
 }
